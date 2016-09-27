@@ -7,7 +7,7 @@ For details about how this conclusion has been made, see competition Kernels on 
 import pandas as pd
 import numpy as np
 
-def process_time(dataframe):
+def process_x_y_time_and_accuracy(dataframe):
     dataframe["hour"] = dataframe["time"]//60
     dataframe["hour_of_day"] = dataframe["hour"]%24 + 1
     dataframe["day"] = dataframe["hour"]//24
@@ -18,15 +18,21 @@ def process_time(dataframe):
     dataframe["sine"] = np.sin(2*np.pi*dataframe["hour_of_day"]/24)
     dataframe["cos"] = np.cos(2*np.pi*dataframe["hour_of_day"]/24)
     dataframe["year"] = dataframe["day"]//365 + 1
+
+    dataframe['accuracy'] = np.log(dataframe['accuracy']).astype(float)
+
+    dataframe["x"] = dataframe["x"]*999.99
+    dataframe["y"] = dataframe["y"]*999.99
+
     return dataframe
 
 
 train = pd.read_csv("train.csv")
-engineered_train = process_time(train)
+engineered_train = process_x_y_time_and_accuracy(train)
 del train
 engineered_train.to_csv("engineered_train.csv",index=False)
 
 test = pd.read_csv("test.csv")
-engineered_test = process_time(test)
+engineered_test = process_x_y_time_and_accuracy(test)
 del test
 engineered_test.to_csv("engineered_test.csv",index = False)
