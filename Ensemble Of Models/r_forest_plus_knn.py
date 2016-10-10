@@ -1,5 +1,6 @@
 """
 This code generate 10 different submission files with varying weightage to the models.
+This code can run only after preprocessing1.py and preprocessing2.py have already run.
 """
 
 import pandas as pd
