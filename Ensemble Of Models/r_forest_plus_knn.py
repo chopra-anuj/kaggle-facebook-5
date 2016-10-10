@@ -1,5 +1,5 @@
 """
-This code generatesa 10 different submission files with varying weightage to the models.
+This code generate 10 different submission files with varying weightage to the models.
 """
 
 import pandas as pd
